@@ -1,6 +1,6 @@
-# Layer-properties-export-script
+# Layers-properties-export-script
 
-Layer-properties-export-script is a Photoshop script for exporting layers properties and saving them into Nanits Composer's config file of desired comic book project.
+Layers-properties-export-script is a Photoshop :paintbrush: script for exporting layers properties (position and size) and saving them into Nanits Composer's config file of desired comic book project.
 
 ## Installation
 Copy NanitsScript.jsx and json2.js to this folder: `C:\Program Files\Adobe\Adobe Photoshop CC 2019\Presets\Scripts`
