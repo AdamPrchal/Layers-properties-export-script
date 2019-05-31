@@ -6,11 +6,11 @@ var LANGUAGE_MAP = {
     'ENG': 'en'
 };
 
-var myJSON = File.openDialog("Selection prompt");
-myJSON = myJSON.toString();
+var pathToJSON = File.openDialog("Selection prompt");
+pathToJSON = pathToJSON.toString();
 var documentHeight = app.activeDocument.height; // Zjištění výšky souboru
 var groups = ["Lettering", "Parallax"];
-var obj = loadJSON(myJSON);
+var loadedJSON = loadJSON(pathToJSON);
 
 // {
 //     "src": "./par/img/kxmNiIqNwwNq8gJzsChr",
@@ -57,7 +57,7 @@ for (var i = 0; i <= (groups.length - 1); i++) {
                     },
                     "speed": 1,
                     "direction": 1,
-                    "layerIndex": 1
+                    "layerIndex": 55
                 };
                 langArray[correctLangName] ? langArray[correctLangName].unshift(currentLang) : langArray[correctLangName] = [currentLang];
             }
@@ -89,12 +89,12 @@ for (var i = 0; i <= (groups.length - 1); i++) {
     }
 }
 
-obj.par.img = imgArray;
-obj.par.lang = langArray;
+loadedJSON.par.img = imgArray;
+loadedJSON.par.lang = langArray;
 
-var file = new File(Folder.desktop + "/out.json"); // Vytvoření .txt souboru na ploše
+var file = new File(Folder.desktop + "/out.json"); // Vytvoření .json souboru na ploše
 file.open("w", "TEXT", "????");
-file.writeln(JSON.stringify(obj));
+file.writeln(JSON.stringify(loadedJSON));
 file.close();
 
 function loadJSON(pathToJSON) {
