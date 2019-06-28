@@ -14,17 +14,16 @@ var groups = {
 // Loads 'config.json' from selected project folder and saves its data into 'loadedJSON' variable
 
 // TODO: Add page height to object or increment it if it is already set 
+var loadedJSON = inputWindow();
+loadedJSON;
 
-var pathToJSON = File.openDialog("Select config.json");
-pathToJSON = pathToJSON.toString();
-var loadedJSON = loadJSON(pathToJSON);
 
 importImgLayers(loadedJSON);
 importLangLayers(loadedJSON);
 
 var file = new File(Folder.desktop + "/out.json"); // Creats .json file on Desktop
 file.open("w", "TEXT", "????");
-file.writeln(JSON.stringify(loadedJSON));
+file.writeln(JSON.stringify(loadedJSON, null, "\t"));
 file.close();
 
 function importLangLayers(activeJSON) {
@@ -81,7 +80,31 @@ function importImgLayers(activeJSON) {
     }
 }
 
+function inputWindow() {
+    var myWindow = new Window("dialog", "Form");
+    myWindow.add("statictext", undefined, "Page number:");
+    var pageNumber = myWindow.add("edittext");
+    myWindow.add("statictext", undefined, "Path to config.json:");
+    var pathToJSON = myWindow.add("edittext");
+    var findFile = myWindow.add("button", undefined, "Select config.json")
 
+    pathToJSON.characters = 25;
+    pathToJSON.active = true;
+    var myButtonGroup = myWindow.add("group");
+    var okButton = myButtonGroup.add("button", undefined, "OK");
+    myButtonGroup.add("button", undefined, "Cancel");
+    findFile.onClick = function () {
+        var dialogPath = File.openDialog("Select config.json")
+        pathToJSON.text = dialogPath.toString();
+    }
+    if (myWindow.show() == 1) {
+        var loadedJSON = loadJSON(pathToJSON.text);
+        return loadedJSON;
+    } else {
+        exit();
+    }
+    myWindow.show();
+}
 
 function loadJSON(pathToJSON) {
     var jsonFile = new File(pathToJSON);
