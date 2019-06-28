@@ -34,7 +34,7 @@ function importLangLayers(activeJSON) {
         for (var y = 0; y <= (groups.lang[activeLang].length - 1); y++) {
             var currentLayer = groups.lang[activeLang][y];
             var currentLayerObject = {
-                "src": "./par/lang/" + activeLang + '/' + currentLayer.name,
+                "src": ".\\par\\lang\\" + activeLang + '\\' + currentLayer.name,
                 "size": {
                     "x": getLayerWidth(currentLayer),
                     "y": getLayerHeight(currentLayer)
@@ -47,7 +47,7 @@ function importLangLayers(activeJSON) {
                     "top": activeJSON.metadata.projectWidth,
                     "bottom": activeJSON.metadata.projectWidth + currentLayer.bounds[3].as("px")
                 },
-                "speed": 1,
+                "speed": 0,
                 "direction": 1,
                 "layerIndex": 55
             };
@@ -60,7 +60,7 @@ function importImgLayers(activeJSON) {
     for (var i = 0; i <= (groups.img.length - 1); i++) {
         var currentLayer = groups.img[i];
         var currentLayerObject = {
-            "src": "./par/img/" + currentLayer.name,
+            "src": ".\\par\\img\\" + currentLayer.name,
             "size": {
                 "x": getLayerWidth(currentLayer),
                 "y": getLayerHeight(currentLayer)
@@ -73,13 +73,15 @@ function importImgLayers(activeJSON) {
                 "top": activeJSON.metadata.projectWidth,
                 "bottom": activeJSON.metadata.projectWidth + currentLayer.bounds[3].as("px")
             },
-            "speed": 1,
+            "speed": 0,
             "direction": 1,
             "layerIndex": 1
         };
         activeJSON.par.img.unshift(currentLayerObject);
     }
 }
+
+
 
 function loadJSON(pathToJSON) {
     var jsonFile = new File(pathToJSON);
@@ -89,6 +91,10 @@ function loadJSON(pathToJSON) {
     jsonFile.close();
 
     return JSON.parse(str);
+}
+
+function getTopOffset(activePSB) {
+
 }
 
 function getKeysWithoutObjectKeysSupport(associativeArrayObject) {
