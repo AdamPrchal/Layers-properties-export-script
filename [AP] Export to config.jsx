@@ -53,7 +53,7 @@ function main() {
                         },
                         "offset": {
                             "top": activeJSON.metadata.projectWidth,
-                            "bottom": activeJSON.metadata.projectWidth + currentLayer.bounds[3].as("px")
+                            "bottom": activeJSON.metadata.projectWidth + getLayerHeight(currentLayer)
                         },
                         "speed": 0,
                         "direction": 1,
@@ -79,7 +79,7 @@ function main() {
                     },
                     "offset": {
                         "top": activeJSON.metadata.projectWidth,
-                        "bottom": activeJSON.metadata.projectWidth + currentLayer.bounds[3].as("px")
+                        "bottom": activeJSON.metadata.projectWidth + getLayerHeight(currentLayer)
                     },
                     "speed": 0,
                     "direction": 1,
