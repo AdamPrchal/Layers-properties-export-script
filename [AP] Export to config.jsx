@@ -204,7 +204,6 @@ function main() {
         function detectLanguages() {
             for (var i = 0; i < letteringGroup.length; i++) {
                 var langName = letteringGroup[i].name;
-                alert(langName);
                 if (langName == "ENG") groups.lang.en = letteringGroup.getByName(langName).layers;
                 if (langName == "CZE") groups.lang.cz = letteringGroup.getByName(langName).layers;
                 if (langName == "GER") groups.lang.de = letteringGroup.getByName(langName).layers;
